@@ -78,7 +78,7 @@ export class NewdocComponent implements OnInit {
           'authorname': this.user.displayName,
           'authoremail': this.user.email,
           'filetype': this.file.type,
-          'date': (new Date()).toLocaleDateString(),
+          'date': 'On '+ (new Date()).toLocaleDateString()+ ' At ' + (new Date()).toLocaleTimeString() ,
         }
         delete obj['file'];
         this.db.collection("users").doc(this.user.email).collection("documents").doc(ts).set(obj).then(()=>{

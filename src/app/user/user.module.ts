@@ -11,11 +11,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component'
 import {FormsModule} from '@angular/forms';
 import { NewdocComponent } from './newdoc/newdoc.component';
-import { ViewdocsComponent } from './viewdocs/viewdocs.component'
+import { ViewdocsComponent } from './viewdocs/viewdocs.component';
+import { ViewsharedComponent } from './viewshared/viewshared.component'
 
 
 @NgModule({
-  declarations: [ProfileComponent, UpdateprofileComponent, NewdocComponent, ViewdocsComponent],
+  declarations: [ProfileComponent, UpdateprofileComponent, NewdocComponent, ViewdocsComponent, ViewsharedComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

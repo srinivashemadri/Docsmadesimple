@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   title = 'Docsmadesimple';
   user:object = null;
   ngOnInit(){
+    
     this.auth.authState.subscribe((user)=>{
       this.user = user;
       

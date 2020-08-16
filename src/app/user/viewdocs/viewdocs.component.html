@@ -58,14 +58,35 @@
                         <h6>Uploaded Date: {{document['date']}} </h6>
                     </div>
 
-                    <div class="hide-on-med-and-down show-on-large ">
-                        <a target="_blank" [href]= "['https://web.whatsapp.com/send?text=' + 'https://docs-made-easier.web.app/viewshared/' + document['authoremail'] + '/' + document['id'] ]" data-action="share/whatsapp/share">Share via Whatsapp web</a>
-                    </div>
+                    <hr>
 
-                    <div class="show-on-small show-on-medium hide-on-large-only">
-                        <a target="_blank" [href]= "['whatsapp://send?text=' + 'https://docs-made-easier.web.app/viewshared/' + document['authoremail'] + '/' + document['id'] ]" data-action="share/whatsapp/share">Share via Whatsapp web</a>
-                        
-                        
+                    <div >
+                        <div class="hide-on-med-and-down show-on-large ">
+                            <a target="_blank" [href]= "['https://web.whatsapp.com/send?text=' + 'https://docs-made-easier.web.app/viewshared/' + document['authoremail'] + '/' + document['id'] ]" data-action="share/whatsapp/share">
+                                <img src="../../../assets/whatsapp.png" height="35" width="35">
+                                <span style="font-size: 24px;">Share via Whatsapp web</span>    
+                            </a>
+                            <br>
+                            <button style="margin-top: 5px;" class="btn-flat green white-text modal-trigger" data-target="sharelinkmodal" (click)="sharinglink(document['id'])">
+                                <span class="tiny material-icons">share</span>
+                                Share via link
+                            </button>
+                        </div>
+    
+                        <div class="show-on-small show-on-medium hide-on-large-only">
+                            <a data-action="share/whatsapp/share" [href]= "getSafeurl(document['authoremail'],document['id'])">
+                                <img src="../../../assets/whatsapp.png" height="35" width="35">
+                                <span style="font-size: 24px;">Share via Whatsapp</span> 
+                            </a>
+                            
+                            <br>
+                            <button style="margin-top: 5px;" class="btn-flat green white-text modal-trigger" data-target="sharelinkmodal" (click)="sharinglink(document['id'])">
+                                <span class="tiny material-icons">share</span>
+                                Share via link
+                            </button>
+                            
+                            
+                        </div>
                     </div>
                 </div>
             </div>
@@ -113,6 +134,35 @@
                         <div>
                             <h6>Uploaded Date: {{document['date']}} </h6>
                         </div>
+                        <hr>
+                        <div >
+                            <div class="hide-on-med-and-down show-on-large ">
+                                <a target="_blank" [href]= "['https://web.whatsapp.com/send?text=' + 'https://docs-made-easier.web.app/viewshared/' + document['authoremail'] + '/' + document['id'] ]" data-action="share/whatsapp/share">
+                                    <img src="../../../assets/whatsapp.png" height="35" width="35">
+                                    <span style="font-size: 24px;">Share via Whatsapp web</span>    
+                                </a>
+                                <br>
+                                <button style="margin-top: 5px;" class="btn-flat green white-text modal-trigger" data-target="sharelinkmodal" (click)="sharinglink(document['id'])">
+                                    <span class="tiny material-icons">share</span>
+                                    Share via link
+                                </button>
+                            </div>
+        
+                            <div class="show-on-small show-on-medium hide-on-large-only">
+                                <!-- <a data-action="share/whatsapp/share" href= "['whatsapp://send?text=' + 'https://docs-made-easier.web.app/viewshared/' + document['authoremail'] + '/' + document['id'] ]">
+                                    <img src="../../../assets/whatsapp.png" height="35" width="35">
+                                    <span style="font-size: 24px;">Share via Whatsapp</span> 
+                                </a> -->
+                                <a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Share via Whatsapp</a>
+                                <br>
+                                <button style="margin-top: 5px;" class="btn-flat green white-text modal-trigger" data-target="sharelinkmodal" (click)="sharinglink(document['id'])">
+                                    <span class="tiny material-icons">share</span>
+                                    Share via link
+                                </button>
+                                
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -147,4 +197,19 @@
       <h4>Loading..</h4>
 
 </div>
+
+<div id="sharelinkmodal" class="modal grey darken-4">
+    <div class="modal-content ">
+      <h4>Share this link</h4>
+      <p id="message" style="font-size: small;" > {{currsharinglink}} </p>
+    </div>
+    <div class="modal-footer grey darken-3">
+        <button (click)="copylink()" class=" modal-close btn-flat transparent white-text" >
+            <span class="material-icons">
+                content_copy
+            </span>
+            Copy Link
+        </button>
+    </div>
+  </div>
 
