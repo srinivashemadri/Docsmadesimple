@@ -1,0 +1,16 @@
+.brand-logo{
+    font-family: 'Julius Sans One';font-size: 22px;
+    font-weight: bolder;
+
+    color: wh;
+}
+
+nav{
+    height: 65px;
+}
+
+li{
+    color: white;
+    font-family: 'Alegreya SC';
+    font-size: 18px;
+}

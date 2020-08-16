@@ -1,0 +1,54 @@
+<link href='https://fonts.googleapis.com/css?family=Julius Sans One' rel='stylesheet'>
+<div class="card grey darken-4 hoverable">
+    <div class="card-content">
+        <p class="card-title">Sign up to DOCS MADE EASIER</p>
+        
+        <form #ng="ngForm" (ngSubmit)="Signup(ng)">
+
+            <div class="input-field">
+                <input id="first_name" required type="text" name="Firstname" ngModel class="validate">
+                <label for="first_name">First Name</label>
+                <span class="helper-text" data-error="Please enter First Name"></span>
+            </div>
+            <div class="input-field">
+                <input id="last_name" required type="text" name="Lastname" ngModel class="validate">
+                <label for="last_name">Last Name</label>
+                <span class="helper-text" data-error="Please enter Last Name"></span>
+            </div>
+            <div class="input-field">
+                <input id="email" required type="email" name="email" ngModel class="validate">
+                <label for="email">Email</label>
+                <span class="helper-text" data-error="Email is badly formatted"></span>
+            </div>
+            <div class="input-field">
+                <input id="password" required type="password" minlength="6" name="password" ngModel class="validate">
+                <label for="password">Password</label>
+                <span class="helper-text" data-error="Password should be atleast 6 characters long"></span>
+            </div>
+            <div class="input-field">
+                <input id="cf_password" required type="password" minlength="6" name="cf_password" ngModel class="validate">
+                <label for="cf_password">Confirm your Password</label>
+                <span class="helper-text" data-error="Password should be atleast 6 characters long"></span>
+            </div>
+            
+            <div class="center">
+                <button [disabled]="ng.invalid" class="btn red" type="submit">Sign up</button>
+            </div>
+
+        </form>
+        
+    </div>
+
+</div>
+
+<button style="visibility: hidden;" data-target="signupmodal" class="btn modal-trigger"  id="signupmodaltrigger" >Trigger modal</button>
+
+<div id="signupmodal" class="modal">
+    <div class="modal-content">
+      <h4 class="green-text">Sign up success</h4>
+      <p class="black-text">A Verification Email has been sent to {{email}}, Please Verify Your account before Logging in </p>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>

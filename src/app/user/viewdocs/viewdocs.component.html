@@ -1,0 +1,150 @@
+
+
+<div *ngIf="!isLoading">
+    <nav class="blue" style="margin-top: 10px;">
+        <div class="nav-wrapper">
+          <form #ng="ngForm" (ngSubmit)="search(ng)">
+            <div class="input-field">
+              <input placeholder="Search for documents" id="search" type="search" required name="search" ngModel>
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <span style="margin-top: 10px;" (click)="clear(ng)" class="material-icons">close</span>
+            </div>
+          </form>
+          
+        </div>
+       
+    </nav>
+    
+
+    <div *ngIf="!filterapplied">
+        <div *ngFor="let document of listofdocuments" >
+
+            <div class="card grey darken-4">
+                
+                <div class="card-content center">
+                    <div>
+                        <h4 class="card-title"><u>Title:</u> {{document['name']}}</h4>
+                    </div>
+                    
+                    <div class="hide-on-med-and-down show-on-large ">
+                        
+                        <a [href]="document['fileurl']" target="_blank" download="Docsmadesimple">
+                            <div *ngIf="document['filetype']=='image/jpeg' || document['filetype']=='image/jpg' || document['filetype']=='image/png' ">
+                                <img [src]="document['fileurl']" width="60%" >
+                            </div>
+                            <div *ngIf="document['filetype']!='image/jpeg' && document['filetype']!='image/jpg' && document['filetype']!='image/png' ">
+                                <button type="button" class="btn-flat blue">Click here to View this document</button>
+                            </div>
+                        </a>
+                        
+                    </div>
+                    <div class="show-on-small show-on-medium hide-on-large-only" >
+                        
+                        <a [href]="document['fileurl']" target="_blank" download="Docsmadesimple">
+                            <div *ngIf="document['filetype']=='image/jpeg' || document['filetype']=='image/jpg' || document['filetype']=='image/png' ">
+                                <img [src]="document['fileurl']" width="80%" >
+                            </div>
+                            <div *ngIf="document['filetype']!='image/jpeg' && document['filetype']!='image/jpg' && document['filetype']!='image/png' ">
+                                <button type="button" class="btn-flat blue">Click here to View this document</button>
+                            </div>
+                        </a>
+                    </div>
+    
+                    <div>
+                        <h6>Document type: {{document['filetype']}} </h6>
+                    </div>
+    
+                    <div>
+                        <h6>Uploaded Date: {{document['date']}} </h6>
+                    </div>
+
+                    <div class="hide-on-med-and-down show-on-large ">
+                        <a target="_blank" [href]= "['https://web.whatsapp.com/send?text=' + 'https://docs-made-easier.web.app/viewshared/' + document['authoremail'] + '/' + document['id'] ]" data-action="share/whatsapp/share">Share via Whatsapp web</a>
+                    </div>
+
+                    <div class="show-on-small show-on-medium hide-on-large-only">
+                        <a target="_blank" [href]= "['whatsapp://send?text=' + 'https://docs-made-easier.web.app/viewshared/' + document['authoremail'] + '/' + document['id'] ]" data-action="share/whatsapp/share">Share via Whatsapp web</a>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="filterapplied">
+        <div *ngIf="filteredlistofdocuments.length>0">
+            <div *ngFor="let document of filteredlistofdocuments" >
+
+                <div class="card grey darken-4">
+                    
+                    <div class="card-content center">
+                        <div>
+                            <h4 class="card-title"><u>Title:</u> {{document['name']}}</h4>
+                        </div>
+                        
+                        <div class="hide-on-med-and-down show-on-large ">
+                            
+                            <a [href]="document['fileurl']" target="_blank" download="Docsmadesimple">
+                                <div *ngIf="document['filetype']=='image/jpeg' || document['filetype']=='image/jpg' || document['filetype']=='image/png' ">
+                                    <img [src]="document['fileurl']" width="60%" >
+                                </div>
+                                <div *ngIf="document['filetype']!='image/jpeg' && document['filetype']!='image/jpg' && document['filetype']!='image/png' ">
+                                    <button type="button" class="btn-flat blue">Click here to View this document</button>
+                                </div>
+                            </a>
+                            
+                        </div>
+                        <div class="show-on-small show-on-medium hide-on-large-only" >
+                            
+                            <a [href]="document['fileurl']" target="_blank" download="Docsmadesimple">
+                                <div *ngIf="document['filetype']=='image/jpeg' || document['filetype']=='image/jpg' || document['filetype']=='image/png' ">
+                                    <img [src]="document['fileurl']" width="80%" >
+                                </div>
+                                <div *ngIf="document['filetype']!='image/jpeg' && document['filetype']!='image/jpg' && document['filetype']!='image/png' ">
+                                    <button type="button" class="btn-flat blue">Click here to View this document</button>
+                                </div>
+                            </a>
+                        </div>
+        
+                        <div>
+                            <h6>Document type: {{document['filetype']}} </h6>
+                        </div>
+        
+                        <div>
+                            <h6>Uploaded Date: {{document['date']}} </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="filteredlistofdocuments.length == 0" class="center">
+            <h5>Sorry! No documents found</h5>
+
+        </div>
+       
+    </div>
+    
+
+    
+
+    
+
+</div>
+
+<div *ngIf="isLoading" class="center" style="margin-top: 20px;">
+    
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-red-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+      <h4>Loading..</h4>
+
+</div>
+

@@ -1,0 +1,50 @@
+<link href='https://fonts.googleapis.com/css?family=Julius Sans One' rel='stylesheet'>
+<div class="card grey darken-4 hoverable">
+    <div class="card-content">
+        <p class="card-title">Sign in to DOCS MADE EASIER</p>
+        
+        <form #ng="ngForm" (ngSubmit)="Signin(ng)">
+            <div class="input-field">
+                <input id="email" required type="email" name="email" ngModel class="validate">
+                <label for="email">Email</label>
+                <span class="helper-text" data-error="Email is badly formatted"></span>
+            </div>
+            <div class="input-field">
+                <input id="password" required type="password" minlength="6" name="password" ngModel class="validate">
+                <label for="password">Password</label>
+                <span class="helper-text" data-error="Password should be atleast 6 characters long"></span>
+            </div>            
+            <div class="center">
+                <button [disabled]="ng.invalid" class="btn red" type="submit">Sign in</button>
+            </div>
+
+        </form>
+        
+    </div>
+    <div class="card-action ">
+        <div class="center">
+            <button class="btn-flat center" (click)="signinwithgoogle()">
+                <img height="20" width="20" src="https://raw.githubusercontent.com/srinivashemadri/pollster/master/src/assets/google.png" alt="">
+                &nbsp; &nbsp;
+                <span class="white-text">Signin with Google Instead</span>
+            </button>
+        </div>
+        
+
+    </div>
+
+</div>
+
+<button style="visibility: hidden;" data-target="modal1" class="btn modal-trigger"  id="modaltrigger" >Trigger modal</button>
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        
+      <h4 class="red-text">{{header}}</h4>
+      <p class="black-text">{{message}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="modal-close waves-effect waves-green btn green">OK</button>
+      
+    </div>
+</div>

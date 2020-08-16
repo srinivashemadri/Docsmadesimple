@@ -1,0 +1,33 @@
+<div class="card hoverable">
+    <div class="card-content grey darken-4">
+        <h4>Hey! {{user['displayName'] }} </h4>
+        
+            <a routerLink="/updateprofile" class="blue-text">
+            <span class="material-icons">edit</span>
+            Edit Profile
+            </a>
+        
+        <hr>
+        <table >
+            <tr>
+                <th>Display Picture</th>
+                <td class="center">
+                    <img height="150" width="150" [src]="user['photoURL'] " alt="">
+                </td>
+            </tr>
+            <tr>
+                <th >Display Name</th>
+                <td class="center">
+                    {{user['displayName'] }}
+                </td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td class="center">
+                    {{user['email']}}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>

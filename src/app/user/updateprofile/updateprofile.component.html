@@ -1,0 +1,100 @@
+
+<div *ngIf="!isLoading">
+    <div class="card grey darken-4">
+        
+        <div class="card-content">
+            
+            <div class="card-title">
+                <h4>Welcome, {{user['displayName']}}</h4>
+            </div>
+                <div class="center" >
+                    <div *ngIf="user['photoURL'] ">
+                        <img [src]="fileurl" height="150" width="150" alt="Profile Picture">
+                    </div>
+                    <input ngModel  style="visibility: hidden;" #ok type="file" id="file" name="file" (input)="getfile($event.target.files[0])">
+                                
+                    <br>
+                    <button class="btn blue" (click)="ok.click()">Change</button>
+                    &nbsp;
+                    <button (click)="uploadimage()" class="btn green">
+                        <span *ngIf="spinnerload" class="spinner-border spinner-border-sm"></span>
+                        Save
+                    </button>
+                    
+                </div>
+                <div class="mt-2">
+                    <form #ng="ngForm" (ngSubmit)="updateprofile(ng)">
+                        <div class="input-field">
+                            <input style="color: grey;"  type="text" readonly [(ngModel)]="email" required name="email" id="email">
+                            <label class="active" for="email">Email</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" [(ngModel)]="name" required name="name" id="name">
+                            <label class="active" for="name">Display Name</label>
+                            
+                        </div>
+                        <div class="center">
+                            <button class="btn blue" [disabled]="ng.invalid" >Update Profile</button>
+                            <br>
+                        </div>
+                    </form>
+                </div>
+                <div class="progress" *ngIf="progressspinning">
+                    <div class="indeterminate"></div>
+                </div>
+
+                <div class="card-action " style="margin-top: 5px;">
+                    <button class="btn-block btn blue" (click)="changepwd()" >Request to change password</button>
+                    <button data-target="modal2" class="modal-trigger btn-block btn red" >Delete account</button>
+                    
+                </div>
+                
+                
+            
+        </div>
+    
+    </div>
+</div>
+
+<div *ngIf="isLoding">
+    <div class="preloader-wrapper small active">
+        <div class="spinner-layer spinner-green-only">
+            <div class="circle-clipper left">
+            <div class="circle"></div>
+            </div><div class="gap-patch">
+            <div class="circle"></div>
+            </div><div class="circle-clipper right">
+            <div class="circle"></div>
+            </div>
+        </div>
+        </div>
+</div>
+
+<button style="visibility: hidden;" data-target="passwordresetmodal" class="btn modal-trigger"  id="passwordresetmodaltrigger" >Trigger modal</button>
+
+<div id="passwordresetmodal" class="modal">
+    <div class="modal-content">
+        
+      <h4 class="green-text">Password reset link sent successfully</h4>
+      <p class="black-text">Dear {{name}}, An email with confidential URL has been sent to your registered email, Please click on that link to reset your password</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="modal-close waves-effect waves-green btn green">OK</button>
+      
+    </div>
+</div>
+
+<div id="modal2" class="modal">
+    <div class="modal-content">
+        
+      <h4 class="red-text">Are you sure you want to delete your account?</h4>
+      <p class="black-text">Dear {{name}}, By deleting your account, you will lose your data permanantly </p>
+    </div>
+    <div class="modal-footer">
+        
+        <button type="button" class="modal-close waves-effect waves-green btn red">Cancel</button>
+        &nbsp;
+        <button type="button" (click)="deletemyaccount()" class="modal-close waves-effect waves-green btn green">Confirm, Deleting Account</button>
+      
+    </div>
+</div>
