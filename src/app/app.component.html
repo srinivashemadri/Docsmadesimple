@@ -59,8 +59,8 @@
   <hr style="margin-top: 40px;">
   <div style="margin-top: 5px;">
     <div *ngIf="user == null">
-      <li><a routerLink="/signup">Sign Up</a></li>
-      <li><a routerLink="/signin">Sign In</a></li>
+      <li ><a class="white-text" routerLink="/signup">Sign Up</a></li>
+      <li ><a class="white-text" routerLink="/signin">Sign In</a></li>
     </div>
     <div *ngIf="user != null">
       <ul class="white-text">
@@ -86,7 +86,7 @@
         </li>
 
         <li>
-          <a class="white-text" [routerLink]="['/viewdocuments/', user['email'] ]">
+          <a class="white-text" routerLink="/viewdocuments">
             <span class="small material-icons">list</span>
             View my documents
           </a>

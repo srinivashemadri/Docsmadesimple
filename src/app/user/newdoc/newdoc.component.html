@@ -1,5 +1,5 @@
 <div *ngIf="!isDataloading">
-    <div class="card hoverable grey darken-4">
+    <div class="card hoverable grey darken-4 center" *ngIf="!Datashared">
     
         <div class="progress" *ngIf="progressspinning">
             <div class="indeterminate"></div>
@@ -8,7 +8,7 @@
         <form #ng="ngForm" (ngSubmit)="Upload(ng)">
     
             <div class="center">
-                <input  name="file" required ngModel style="visibility: hidden;" #ok type="file" id="file" name="file" (input)="getfile($event.target.files[0])">
+                <input name="file" required ngModel style="visibility: hidden;" #ok type="file" id="file" name="file" (input)="getfile($event.target.files[0])">
                                     
             <br>
             <button type="button" class="btn blue" (click)="ok.click()">Select a file</button>
@@ -43,6 +43,63 @@
     
             <div class="center">
                 <button type="submit" class="btn blue" [disabled]="ng.invalid" >Upload</button>
+    
+            </div>
+        </form>
+    
+    </div>
+    <div class="card hoverable grey darken-4" *ngIf="Datashared">
+    
+        <div class="progress" *ngIf="progressspinning">
+            <div class="indeterminate"></div>
+        </div>
+        
+        <form #ng="ngForm" (ngSubmit)="update(ng)">
+    
+            <div class="center">
+                <input name="file" required style="visibility: hidden;" #ok type="file" id="file" name="file" (input)="getfile($event.target.files[0])">
+                                    
+            <br>
+            <button type="button" class="btn blue" (click)="ok.click()">Select a file</button>
+    
+            </div>
+    
+            <div class="mydiv center">
+                <div *ngIf="ds.readDocument()['filetype'] == 'image/jpeg' || ds.readDocument()['filetype']== 'image/jpg' || ds.readDocument()['filetype'] == 'image/png' ">
+                    <img [src]="ds.readDocument()['fileurl']" height="100%" width="100%" alt="image">
+                </div>
+
+                
+                <div *ngIf="ds.readDocument()['filetype']!='image/jpeg' && ds.readDocument()['filetype']!='image/jpg' && ds.readDocument()['filetype']!='image/png' ">
+                    <div *ngIf="fileurl == '' ">
+                        <a [href]="ds.readDocument()['fileurl']" target="_blank">
+                            <button type="button" class="btn-flat blue white-text">Click here to View this document</button>
+                        </a>
+                    </div>
+                    <div *ngIf="fileurl != '' ">
+                        <p>Name of file: {{file.name}}</p>
+                    </div>
+                    
+                </div>
+            </div>
+    
+            <div class="input-field">
+                <input type="text" required name="name" [(ngModel)]="ds.readDocument()['name']" id="name" >
+                <label class="active" for="name">Name of the file/ Description</label>
+            </div>
+
+            <div class="switch">
+                <p>Save this file as private?</p>
+                <label>
+                  NO
+                  <input [(ngModel)]="ds.readDocument()['switch']" name="switch" type="checkbox">
+                  <span class="lever"></span>
+                  YES
+                </label>
+              </div>
+    
+            <div class="center">
+                <button type="submit" class="btn blue" [disabled]="ng.invalid" >Update</button>
     
             </div>
         </form>

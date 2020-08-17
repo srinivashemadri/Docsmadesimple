@@ -1,64 +1,140 @@
 <div *ngIf="!isLoading">
-    <div *ngIf="!data['switch']">
-        <div class="card grey darken-4">
+    
+        <div *ngIf="!data['switch']">
+            
+            <div class="card grey darken-4">
                 
-            <div class="card-content center">
-                
-                <div>
-                    <h4 class="card-title"><u>Title:</u> {{data['name']}}</h4>
-                </div>
-                
-                <div class="hide-on-med-and-down show-on-large ">
+                <div class="card-content center">
                     
-                    <a [href]="data['fileurl']" target="_blank" download="Docsmadesimple">
-                        <div *ngIf="data['filetype']=='image/jpeg' || data['filetype']=='image/jpg' || data['filetype']=='image/png' ">
-                            <img [src]="data['fileurl']" width="60%" >
-                        </div>
-                        <div *ngIf="data['filetype']!='image/jpeg' && data['filetype']!='image/jpg' && data['filetype']!='image/png' ">
-                            <button type="button" class="btn-flat blue">Click here to View this Document</button>
-                        </div>
-                    </a>
-                    
-                </div>
-                <div class="show-on-small show-on-medium hide-on-large-only" >
-                    
-                    <a [href]="data['fileurl']" target="_blank" download="Docsmadesimple">
-                        <div *ngIf="data['filetype']=='image/jpeg' || data['filetype']=='image/jpg' || data['filetype']=='image/png' ">
-                            <img [src]="data['fileurl']" width="80%" >
-                        </div>
-                        <div *ngIf="data['filetype']!='image/jpeg' && data['filetype']!='image/jpg' && data['filetype']!='image/png' ">
-                            <button type="button" class="btn-flat blue">Click here to View this data</button>
-                        </div>
-                    </a>
-                </div>
-        
-                <div>
-                    <h6>Document type: {{data['filetype']}} </h6>
-                </div>
-        
-                <div>
-                    <h6>Uploaded Date: {{data['date']}} </h6>
-                </div>
-                
-                <div class="card-action">
                     <div>
-                        <p>AUTHOR-EMAIL FOR THIS DOCUMENT: {{data['authoremail']}} </p>
+                        <h4 class="card-title"><u>Title:</u> {{data['name']}}</h4>
                     </div>
+                    
+                    <div class="hide-on-med-and-down show-on-large ">
+                        
+                        <a [href]="data['fileurl']" target="_blank" download="Docsmadesimple">
+                            <div *ngIf="data['filetype']=='image/jpeg' || data['filetype']=='image/jpg' || data['filetype']=='image/png' ">
+                                <img [src]="data['fileurl']" width="60%" >
+                            </div>
+                            <div *ngIf="data['filetype']!='image/jpeg' && data['filetype']!='image/jpg' && data['filetype']!='image/png' ">
+                                <button type="button" class="btn-flat blue">Click here to View this Document</button>
+                            </div>
+                        </a>
+                        
+                    </div>
+                    <div class="show-on-small show-on-medium hide-on-large-only" >
+                        
+                        <a [href]="data['fileurl']" target="_blank" download="Docsmadesimple">
+                            <div *ngIf="data['filetype']=='image/jpeg' || data['filetype']=='image/jpg' || data['filetype']=='image/png' ">
+                                <img [src]="data['fileurl']" width="80%" >
+                            </div>
+                            <div *ngIf="data['filetype']!='image/jpeg' && data['filetype']!='image/jpg' && data['filetype']!='image/png' ">
+                                <button type="button" class="btn-flat blue">Click here to View this data</button>
+                            </div>
+                        </a>
+                    </div>
+            
                     <div>
-                        <p>AUTHOR-NAME FOR THIS DOCUMENT: {{data['authorname']}} </p>
+                        <h6>Document type: {{data['filetype']}} </h6>
+                    </div>
+            
+                    <div>
+                        <h6>Uploaded Date: {{data['date']}} </h6>
+                    </div>
+                    
+                    <div class="card-action">
+                        <div>
+                            <p>AUTHOR-EMAIL FOR THIS DOCUMENT: {{data['authoremail']}} </p>
+                        </div>
+                        <div>
+                            <p>AUTHOR-NAME FOR THIS DOCUMENT: {{data['authorname']}} </p>
+                        </div>
+                        <div *ngIf="user!=null && user['email']==email ">
+                            <button (click)="update()" class="btn-flat blue white-text" >
+                                <span class="material-icons">edit</span>
+                                Update
+                            </button>
+            
+                        </div>
+                    </div>
+                    
+            
+                    
+                </div>
+            </div>
+            
+            
+    
+        </div>
+        <div *ngIf="data['switch']" class="center">
+            <div *ngIf="user!=null && user['email']==email">
+                <div class="card grey darken-4">
+                
+                    <div class="card-content center">
+                        
+                        <div>
+                            <h4 class="card-title"><u>Title:</u> {{data['name']}}</h4>
+                        </div>
+                        
+                        <div class="hide-on-med-and-down show-on-large ">
+                            
+                            <a [href]="data['fileurl']" target="_blank" download="Docsmadesimple">
+                                <div *ngIf="data['filetype']=='image/jpeg' || data['filetype']=='image/jpg' || data['filetype']=='image/png' ">
+                                    <img [src]="data['fileurl']" width="60%" >
+                                </div>
+                                <div *ngIf="data['filetype']!='image/jpeg' && data['filetype']!='image/jpg' && data['filetype']!='image/png' ">
+                                    <button type="button" class="btn-flat blue">Click here to View this Document</button>
+                                </div>
+                            </a>
+                            
+                        </div>
+                        <div class="show-on-small show-on-medium hide-on-large-only" >
+                            
+                            <a [href]="data['fileurl']" target="_blank" download="Docsmadesimple">
+                                <div *ngIf="data['filetype']=='image/jpeg' || data['filetype']=='image/jpg' || data['filetype']=='image/png' ">
+                                    <img [src]="data['fileurl']" width="80%" >
+                                </div>
+                                <div *ngIf="data['filetype']!='image/jpeg' && data['filetype']!='image/jpg' && data['filetype']!='image/png' ">
+                                    <button type="button" class="btn-flat blue">Click here to View this data</button>
+                                </div>
+                            </a>
+                        </div>
+                
+                        <div>
+                            <h6>Document type: {{data['filetype']}} </h6>
+                        </div>
+                
+                        <div>
+                            <h6>Uploaded Date: {{data['date']}} </h6>
+                        </div>
+                        
+                        <div class="card-action">
+                            <div>
+                                <p>AUTHOR-EMAIL FOR THIS DOCUMENT: {{data['authoremail']}} </p>
+                            </div>
+                            <div>
+                                <p>AUTHOR-NAME FOR THIS DOCUMENT: {{data['authorname']}} </p>
+                            </div>
+                            <div>
+                                <button (click)="update()" class="btn-flat blue white-text" >
+                                    <span class="material-icons">edit</span>
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+                        
+                
+                        
                     </div>
                 </div>
-                
-        
                 
             </div>
+            <div *ngIf= "user == null ||  user['email']!=email">
+                <p>This document is private! Please ask <b><u>{{data['authorname']}}</u></b>  to make it as public inorder to view this </p>
+            </div>
+            
         </div>
-
-    </div>
-    <div *ngIf="data['switch']" class="center">
-        <p>This document is private! Please ask <b><u>{{data['authorname']}}</u></b>  to make it as public inorder to view this </p>
-
-    </div>
+    
 
 </div>
 

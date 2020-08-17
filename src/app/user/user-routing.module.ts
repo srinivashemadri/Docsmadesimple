@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'updateprofile', component: UpdateprofileComponent},
   {path: 'uploadnewdocument', component: NewdocComponent},
-  {path: 'viewdocuments/:email', component: ViewdocsComponent},
+  {path: 'viewdocuments', component: ViewdocsComponent},
   {path: 'viewshared/:email/:id', component: ViewsharedComponent}
 ];
 
