@@ -1,33 +1,59 @@
-<div class="card hoverable">
-    <div class="card-content grey darken-4">
-        <h4>Hey! {{user['displayName'] }} </h4>
+<div *ngIf="!loading">
+    <div *ngIf="authorized">
+        <div class="card hoverable">
+            <div class="card-content grey darken-4">
+                <h4>Hey! {{user['displayName'] }} </h4>
+                
+                    <a routerLink="/updateprofile" class="blue-text">
+                    <span class="material-icons">edit</span>
+                    Edit Profile
+                    </a>
+                
+                <hr>
+                <table >
+                    <tr>
+                        <th>Display Picture</th>
+                        <td class="center">
+                            <img height="150" width="150" [src]="user['photoURL'] " alt="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th >Display Name</th>
+                        <td class="center">
+                            {{user['displayName'] }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td class="center">
+                            {{user['email']}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
         
-            <a routerLink="/updateprofile" class="blue-text">
-            <span class="material-icons">edit</span>
-            Edit Profile
-            </a>
-        
-        <hr>
-        <table >
-            <tr>
-                <th>Display Picture</th>
-                <td class="center">
-                    <img height="150" width="150" [src]="user['photoURL'] " alt="">
-                </td>
-            </tr>
-            <tr>
-                <th >Display Name</th>
-                <td class="center">
-                    {{user['displayName'] }}
-                </td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td class="center">
-                    {{user['email']}}
-                </td>
-            </tr>
-        </table>
+        </div>
+
     </div>
+    <div *ngIf="!authorized">
+        <h4 class="center">You are not authorized to view this page</h4>
+    </div>
+
+</div>
+
+<div *ngIf="loading" class="center">
+    
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-red-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+      <h4>Loading..</h4>
 
 </div>

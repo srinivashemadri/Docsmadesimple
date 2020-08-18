@@ -23,11 +23,13 @@ export class NewdocComponent implements OnInit,OnDestroy {
   isDataloading: boolean;
   user;
   Datashared: boolean = false;
+  authorized:boolean;
   ngOnInit() {
     this.isDataloading = true;
     this.auth.authState.subscribe((us)=>{
       this.isDataloading = false;
       this.user = us;
+      this.authorized = this.user == null? false: true;
       console.log(this.user)
     })
     

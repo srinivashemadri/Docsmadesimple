@@ -1,59 +1,66 @@
 
 <div *ngIf="!isLoading">
-    <div class="card grey darken-4">
+    <div *ngIf="authorized">
+        <div class="card grey darken-4">
         
-        <div class="card-content">
-            
-            <div class="card-title">
-                <h4>Welcome, {{user['displayName']}}</h4>
-            </div>
-                <div class="center" >
-                    <div *ngIf="user['photoURL'] ">
-                        <img [src]="fileurl" height="150" width="150" alt="Profile Picture">
+            <div class="card-content">
+                
+                <div class="card-title">
+                    <h4>Welcome, {{user['displayName']}}</h4>
+                </div>
+                    <div class="center" >
+                        <div *ngIf="user['photoURL'] ">
+                            <img [src]="fileurl" height="150" width="150" alt="Profile Picture">
+                        </div>
+                        <input ngModel  style="visibility: hidden;" #ok type="file" id="file" name="file" (input)="getfile($event.target.files[0])">
+                                    
+                        <br>
+                        <button class="btn blue" (click)="ok.click()">Change</button>
+                        &nbsp;
+                        <button (click)="uploadimage()" class="btn green">
+                            <span *ngIf="spinnerload" class="spinner-border spinner-border-sm"></span>
+                            Save
+                        </button>
+                        
                     </div>
-                    <input ngModel  style="visibility: hidden;" #ok type="file" id="file" name="file" (input)="getfile($event.target.files[0])">
+                    <div class="mt-2">
+                        <form #ng="ngForm" (ngSubmit)="updateprofile(ng)">
+                            <div class="input-field">
+                                <input style="color: grey;"  type="text" readonly [(ngModel)]="email" required name="email" id="email">
+                                <label class="active" for="email">Email</label>
+                            </div>
+                            <div class="input-field">
+                                <input type="text" [(ngModel)]="name" required name="name" id="name">
+                                <label class="active" for="name">Display Name</label>
                                 
-                    <br>
-                    <button class="btn blue" (click)="ok.click()">Change</button>
-                    &nbsp;
-                    <button (click)="uploadimage()" class="btn green">
-                        <span *ngIf="spinnerload" class="spinner-border spinner-border-sm"></span>
-                        Save
-                    </button>
-                    
-                </div>
-                <div class="mt-2">
-                    <form #ng="ngForm" (ngSubmit)="updateprofile(ng)">
-                        <div class="input-field">
-                            <input style="color: grey;"  type="text" readonly [(ngModel)]="email" required name="email" id="email">
-                            <label class="active" for="email">Email</label>
-                        </div>
-                        <div class="input-field">
-                            <input type="text" [(ngModel)]="name" required name="name" id="name">
-                            <label class="active" for="name">Display Name</label>
-                            
-                        </div>
-                        <div class="center">
-                            <button class="btn blue" [disabled]="ng.invalid" >Update Profile</button>
-                            <br>
-                        </div>
-                    </form>
-                </div>
-                <div class="progress" *ngIf="progressspinning">
-                    <div class="indeterminate"></div>
-                </div>
-
-                <div class="card-action " style="margin-top: 5px;">
-                    <button class="btn-block btn blue" (click)="changepwd()" >Request to change password</button>
-                    <button data-target="modal2" class="modal-trigger btn-block btn red" >Delete account</button>
-                    
-                </div>
-                
-                
-            
-        </div>
+                            </div>
+                            <div class="center">
+                                <button class="btn blue" [disabled]="ng.invalid" >Update Profile</button>
+                                <br>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="progress" *ngIf="progressspinning">
+                        <div class="indeterminate"></div>
+                    </div>
     
+                    <div class="card-action " style="margin-top: 5px;">
+                        <button class="btn-block btn blue" (click)="changepwd()" >Request to change password</button>
+                        <button data-target="modal2" class="modal-trigger btn-block btn red" >Delete account</button>
+                        
+                    </div>
+                    
+                    
+                
+            </div>
+        
+        </div>
     </div>
+    <div *ngIf="!authorized">
+        <h4 class="center">You are not authorized to view this page</h4>
+
+    </div>
+    
 </div>
 
 <div *ngIf="isLoding">

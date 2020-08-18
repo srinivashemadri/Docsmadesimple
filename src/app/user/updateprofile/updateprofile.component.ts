@@ -22,12 +22,14 @@ export class UpdateprofileComponent implements OnInit {
   name:string ='';
   spinnerload:boolean = false;
   isLoding:boolean = false;
+  authorized: boolean
   
 
   ngOnInit() {
     this.isLoading = true;
     
     this.auth.authState.subscribe((us)=>{
+      this.authorized = (us != null)
       this.isLoading = false;
       this.email = us.email;
       this.name = us.displayName;

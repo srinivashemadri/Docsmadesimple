@@ -24,6 +24,7 @@ export class ViewdocsComponent implements OnInit {
   filterapplied:boolean = false;
   isLoading: boolean = false;
   currsharinglink:string = '';
+  authorized:boolean;
   ngOnInit()  {
     this.isLoading = true;
     this.auth.authState.subscribe((us)=>{
@@ -31,7 +32,7 @@ export class ViewdocsComponent implements OnInit {
       
       if(us != null){
        
-        
+        this.authorized= true;
           this.db.collection("users").doc(us.email).collection("documents").get().subscribe( async (result)=>{
     
             await result.forEach((document)=>{
@@ -46,6 +47,10 @@ export class ViewdocsComponent implements OnInit {
           })
           
         
+      }
+      else{
+        this.isLoading = false;   
+        this.authorized = false;
       }
       
       
