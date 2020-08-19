@@ -15,6 +15,7 @@ export class SigninComponent implements OnInit {
   header: string = '';
   message: string = '';
   signinsuccess :boolean;
+  fgtpwdclicked:boolean = false;
 
   ngOnInit() {
   }
@@ -58,6 +59,29 @@ export class SigninComponent implements OnInit {
     }
     else{
       alert("Not valid")
+    }
+  }
+
+  forgotpassword(Form: NgForm){
+    if(Form.valid){
+      this.auth.auth.sendPasswordResetEmail(Form.value.email).then(()=>{
+        var modaltrigger = document.getElementById('modaltrigger');
+        modaltrigger.click();
+        this.signinsuccess = true;
+        this.header = 'Success';
+        this.message = 'An email with password reset link has been successfully sent to '+ Form.value.email +' Please click on that link inorder to reset your password';
+
+      }).catch((err)=>{
+        var modaltrigger = document.getElementById('modaltrigger');
+        modaltrigger.click();
+        this.signinsuccess = false;
+        this.header = 'Failure occured while sending password reset link';
+        this.message = err.message;
+      });
+
+    }
+    else{
+      alert("Please fill out email")
     }
   }
 

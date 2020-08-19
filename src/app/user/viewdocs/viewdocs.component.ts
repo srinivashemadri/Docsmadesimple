@@ -42,7 +42,7 @@ export class ViewdocsComponent implements OnInit {
               }
               this.listofdocuments.unshift(obj)
             })
-            console.log(this.listofdocuments);
+            
             this.isLoading = false;    
           })
           
@@ -62,7 +62,7 @@ export class ViewdocsComponent implements OnInit {
   }
 
   getSafeurl(a:string,b:string){
-    const unsafeurl = "whatsapp://send?text=https://docs-made-easier.web.app/viewshared/" + a+"/"+b;
+    const unsafeurl = "whatsapp://send?text=https://docs-made-easier.firebaseapp.com/viewshared/" + a+"/"+b;
     const safeurl = this.sanitizer.bypassSecurityTrustUrl(unsafeurl);
     
     return safeurl
@@ -107,7 +107,7 @@ export class ViewdocsComponent implements OnInit {
   }
 
   editdocument(document:object){
-    console.log(document);
+    
     this.ds.writeDocument(document);
     this.router.navigate(['/uploadnewdocument']);
 
@@ -122,7 +122,7 @@ export class ViewdocsComponent implements OnInit {
     if(a){
       const ref = firebase.storage().ref();
       const task = ref.child(filename).delete().then(()=>{
-        console.log("document deleted from storage")
+        
       });
       this.db.collection("users").doc(this.user.email).collection("documents").doc(id).delete().then(()=>{
         new Toast({

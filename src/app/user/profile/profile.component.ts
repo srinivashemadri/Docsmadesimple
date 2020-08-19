@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
     this.auth.authState.subscribe((use)=>{
       this.loading = false;
       this.user = use;
-      console.log(this.user['photoURL'])
+      
       this.authorized = this.user == null ? false : true
       
     })

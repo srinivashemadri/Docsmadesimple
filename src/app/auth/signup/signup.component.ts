@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireModule } from 'angularfire2';
 
+import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -10,21 +11,21 @@ import { AngularFireModule } from 'angularfire2';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private auth: AngularFireAuth) { }
+  constructor(private auth: AngularFireAuth, private router: Router, private zone: NgZone) { }
 
   email:string = '';
 
   ngOnInit() {
 
     this.auth.authState.subscribe((user)=>{
-      console.log(user);
+      
     })
     
   }
 
   Signup(Form: NgForm){
     if(Form.valid){
-      console.log(Form.value);
+      
       if(Form.value.password == Form.value.cf_password){
         this.auth.auth.createUserWithEmailAndPassword(Form.value.email, Form.value.password).then((result)=>{
           result.user.updateProfile(
@@ -38,13 +39,13 @@ export class SignupComponent implements OnInit {
               this.auth.auth.signOut();
               this.email= Form.value.email;
             }).catch((err)=>{
-              console.log(err);
+              
             })
             
           })
           
         }).catch((err)=>{
-          console.log(err);
+          
         })
       }
       else{
@@ -56,5 +57,17 @@ export class SignupComponent implements OnInit {
     else{
       alert("Not valid")
     }
+  }
+
+  signupwithgoogle(){
+    var provider = new firebase.auth.GoogleAuthProvider();
+
+    this.auth.auth.signInWithPopup(provider).then((user)=>{
+      this.zone.run(()=>{
+        
+        this.router.navigate(['/profile']);
+      })
+      
+    });
   }
 }

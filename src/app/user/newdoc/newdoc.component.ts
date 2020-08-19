@@ -30,7 +30,7 @@ export class NewdocComponent implements OnInit,OnDestroy {
       this.isDataloading = false;
       this.user = us;
       this.authorized = this.user == null? false: true;
-      console.log(this.user)
+      
     })
     
 
@@ -196,7 +196,7 @@ export class NewdocComponent implements OnInit,OnDestroy {
         'date': 'On '+ (new Date()).toLocaleDateString()+ ' At ' + (new Date()).toLocaleTimeString() ,
         'filename': this.ds.readDocument()['filename']
       }
-      console.log(obj);
+      
       delete obj['file'];
         this.db.collection("users").doc(this.user.email).collection("documents").doc(ts).set(obj).then(()=>{
           this.progressspinning = false;

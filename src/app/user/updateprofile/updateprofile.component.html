@@ -63,18 +63,21 @@
     
 </div>
 
-<div *ngIf="isLoding">
-    <div class="preloader-wrapper small active">
-        <div class="spinner-layer spinner-green-only">
-            <div class="circle-clipper left">
+<div *ngIf="isLoading" class="center">
+    
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-red-only">
+          <div class="circle-clipper left">
             <div class="circle"></div>
-            </div><div class="gap-patch">
+          </div><div class="gap-patch">
             <div class="circle"></div>
-            </div><div class="circle-clipper right">
+          </div><div class="circle-clipper right">
             <div class="circle"></div>
-            </div>
+          </div>
         </div>
-        </div>
+      </div>
+      <h4>Loading..</h4>
+
 </div>
 
 <button style="visibility: hidden;" data-target="passwordresetmodal" class="btn modal-trigger"  id="passwordresetmodaltrigger" >Trigger modal</button>

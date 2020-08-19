@@ -29,8 +29,7 @@ export class ViewsharedComponent implements OnInit {
     this.db.collection("users").doc(this.email).collection("documents").doc(this.id).get().subscribe((result)=>{
       this.isLoading = false;
       this.data = result.data();
-      console.log(this.data)
-      console.log(this.data['switch'])
+      
     })
   }
 

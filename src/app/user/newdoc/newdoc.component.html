@@ -20,6 +20,9 @@
                     <div *ngIf="filetype == 'image/jpeg' || filetype== 'image/jpg' || filetype == 'image/png' ">
                         <img [src]="fileurl" height="100%" width="100%" alt="image">
                     </div>
+                    <div *ngIf="filetype == 'video/mp4' || filetype== 'video/m4a' || filetype == 'video/3gp' ">
+                        <video width="100%" controls [src]="fileurl"></video>
+                    </div>
                     
                     <div *ngIf="fileurl != '' " >
                         <p>Name of file: {{file.name}}</p>
@@ -69,9 +72,13 @@
                     <div *ngIf="ds.readDocument()['filetype'] == 'image/jpeg' || ds.readDocument()['filetype']== 'image/jpg' || ds.readDocument()['filetype'] == 'image/png' ">
                         <img [src]="ds.readDocument()['fileurl']" height="100%" width="100%" alt="image">
                     </div>
+                    <div *ngIf="ds.readDocument()['filetype']=='video/mp4' || ds.readDocument()['filetype']=='video/3gp' ||ds.readDocument()['filetype']=='video/m4a' ">
+                                        
+                        <video width="100%" controls [src]="ds.readDocument()['fileurl']"></video>
+                    </div>
     
                     
-                    <div *ngIf="ds.readDocument()['filetype']!='image/jpeg' && ds.readDocument()['filetype']!='image/jpg' && ds.readDocument()['filetype']!='image/png' ">
+                    <div *ngIf="ds.readDocument()['filetype']!='image/jpeg' && ds.readDocument()['filetype']!='image/jpg' && ds.readDocument()['filetype']!='image/png' && ds.readDocument()['filetype']=='video/mp4' && ds.readDocument()['filetype']=='video/3gp' && ds.readDocument()['filetype']=='video/m4a' ">
                         <div *ngIf="fileurl == '' ">
                             <a [href]="ds.readDocument()['fileurl']" target="_blank">
                                 <button type="button" class="btn-flat blue white-text">Click here to View this document</button>
@@ -129,4 +136,4 @@
       </div>
       <h4>Loading..</h4>
 
-    </div>
+</div>

@@ -47,6 +47,10 @@
                                     <div *ngIf="document['filetype']=='image/jpeg' || document['filetype']=='image/jpg' || document['filetype']=='image/png' ">
                                         <img [src]="document['fileurl']" width="60%" >
                                     </div>
+                                    <div *ngIf="document['filetype']=='video/mp4' || document['filetype']=='video/3gp' || document['filetype']=='video/m4a' ">
+                                        
+                                            <video width="100%" controls [src]="document['fileurl']"></video>
+                                    </div>
                                     <div *ngIf="document['filetype']!='image/jpeg' && document['filetype']!='image/jpg' && document['filetype']!='image/png' ">
                                         <button type="button" class="btn-flat blue">Click here to View this document</button>
                                     </div>
@@ -58,6 +62,10 @@
                                 <a [href]="document['fileurl']" target="_blank">
                                     <div *ngIf="document['filetype']=='image/jpeg' || document['filetype']=='image/jpg' || document['filetype']=='image/png' ">
                                         <img [src]="document['fileurl']" width="80%" >
+                                    </div>
+                                    <div *ngIf="document['filetype']=='video/mp4' || document['filetype']=='video/3gp' || document['filetype']=='video/m4a' ">
+                                        
+                                        <video width="100%" controls [src]="document['fileurl']"></video>
                                     </div>
                                     <div *ngIf="document['filetype']!='image/jpeg' && document['filetype']!='image/jpg' && document['filetype']!='image/png' ">
                                         <button type="button" class="btn-flat blue">Click here to View this document</button>
@@ -80,7 +88,7 @@
                                     
                                     <div class="row">
                                         <div class="col l6">
-                                            <a target="_blank" [href]= "['https://web.whatsapp.com/send?text=' + 'https://docs-made-easier.web.app/viewshared/' + document['authoremail'] + '/' + document['id'] ]" data-action="share/whatsapp/share">
+                                            <a target="_blank" [href]= "['https://web.whatsapp.com/send?text=' + 'https://docs-made-easier.firebaseapp.com/viewshared/' + document['authoremail'] + '/' + document['id'] ]" data-action="share/whatsapp/share">
                                                 <img src="../../../assets/whatsapp.png" height="35" width="35">
                                                 <span style="font-size: 18px;">Share via Whatsapp web</span>    
                                             </a>
@@ -185,6 +193,10 @@
                                     <div *ngIf="document['filetype']=='image/jpeg' || document['filetype']=='image/jpg' || document['filetype']=='image/png' ">
                                         <img [src]="document['fileurl']" width="60%" >
                                     </div>
+                                    <div *ngIf="document['filetype']=='video/mp4' || document['filetype']=='video/3gp' || document['filetype']=='video/m4a' ">
+                                        
+                                        <video width="100%" controls [src]="document['fileurl']"></video>
+                                    </div>
                                     <div *ngIf="document['filetype']!='image/jpeg' && document['filetype']!='image/jpg' && document['filetype']!='image/png' ">
                                         <button type="button" class="btn-flat blue">Click here to View this document</button>
                                     </div>
@@ -196,6 +208,10 @@
                                 <a [href]="document['fileurl']" target="_blank">
                                     <div *ngIf="document['filetype']=='image/jpeg' || document['filetype']=='image/jpg' || document['filetype']=='image/png' ">
                                         <img [src]="document['fileurl']" width="80%" >
+                                    </div>
+                                    <div *ngIf="document['filetype']=='video/mp4' || document['filetype']=='video/3gp' || document['filetype']=='video/m4a' ">
+                                        
+                                        <video width="100%" controls [src]="document['fileurl']"></video>
                                     </div>
                                     <div *ngIf="document['filetype']!='image/jpeg' && document['filetype']!='image/jpg' && document['filetype']!='image/png' ">
                                         <button type="button" class="btn-flat blue">Click here to View this document</button>
@@ -218,7 +234,7 @@
                                     
                                     <div class="row">
                                         <div class="col l6">
-                                            <a target="_blank" [href]= "['https://web.whatsapp.com/send?text=' + 'https://docs-made-easier.web.app/viewshared/' + document['authoremail'] + '/' + document['id'] ]" data-action="share/whatsapp/share">
+                                            <a target="_blank" [href]= "['https://web.whatsapp.com/send?text=' + 'https://docs-made-easier.firebaseapp.com/viewshared/' + document['authoremail'] + '/' + document['id'] ]" data-action="share/whatsapp/share">
                                                 <img src="../../../assets/whatsapp.png" height="35" width="35">
                                                 <span style="font-size: 18px;">Share via Whatsapp web</span>    
                                             </a>

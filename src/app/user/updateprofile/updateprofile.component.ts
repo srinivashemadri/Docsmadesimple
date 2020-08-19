@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { NgForm } from '@angular/forms';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
 import {Toast} from 'materialize-css'
 import { Router } from '@angular/router';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-updateprofile',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class UpdateprofileComponent implements OnInit {
 
-  constructor(private auth: AngularFireAuth, private router: Router) { }
+  constructor(private auth: AngularFireAuth, private router: Router, private db: AngularFirestore) { }
 
   user:object;
   isLoading:boolean;
@@ -22,10 +23,12 @@ export class UpdateprofileComponent implements OnInit {
   name:string ='';
   spinnerload:boolean = false;
   isLoding:boolean = false;
-  authorized: boolean
+  authorized: boolean;
+  
   
 
   ngOnInit() {
+    
     this.isLoading = true;
     
     this.auth.authState.subscribe((us)=>{
@@ -38,9 +41,6 @@ export class UpdateprofileComponent implements OnInit {
 
     })
   }
-
-  
-
   file:File;
   fileurl: string|ArrayBuffer="";
   filechanged:boolean = false;
@@ -104,22 +104,53 @@ export class UpdateprofileComponent implements OnInit {
     }
   }
 
-  deletemyaccount(){
-    this.auth.auth.currentUser.delete().then(()=>{
-      this.router.navigate(['/home']);
-      new Toast({
-        html: 'Account Deletion Successful!',
-        classes: 'rounded green center-text',
-        displayLength: 2000
-      });
+  async deletemyaccount(){
+    this.isLoading = true;
+    const email = this.email;
+    const ref = firebase.storage().ref();
+    const name = "Documents/"+ this.email+"/";  
+    const listref = ref.child(name);
+    listref.listAll().then((res)=>{
+      res.items.forEach((abc)=>{
+        abc.delete();
+      })    
     }).catch((err)=>{
-      console.log(err);
-      new Toast({
-        html: 'Account Deletion Unsuccessful! ' + err.message,
-        classes: 'rounded red center-text',
-        displayLength: 4000
-      });
-    });
+        new Toast({
+          html: 'Account Deletion Unsuccessful! ' + err.message,
+          classes: 'rounded red center-text',
+          displayLength: 10000
+        });
+    })
+    let cnt =0;
+    this.db.collection("users").doc(email).collection("documents").get().subscribe( async (result)=>{
+      
+      result.forEach(async (doc)=>{
+        this.db.collection("users").doc(email).collection("documents").doc(doc.id).delete().then(()=>{
+          
+          cnt++;
+          if(cnt == result.size){
+            this.auth.auth.currentUser.delete().then(()=>{
+              this.isLoading = false;
+              this.router.navigate(['/home']);
+              new Toast({
+                html: 'Account Deletion Successful!',
+                classes: 'rounded green center-text',
+                displayLength: 2000
+              });
+            }).catch((err)=>{
+              
+              new Toast({
+                html: 'Account Deletion Unsuccessful! ' + err.message,
+                classes: 'rounded red center-text',
+                displayLength: 10000
+              });
+            });
+          }
+        });
+      })
+    })
+    
+    
   }
 
   changepwd(){

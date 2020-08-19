@@ -2,8 +2,14 @@ html,body {
     min-height: 100vh;
     height: auto;
     background-color: black;
+    
 }
 
+
+
+  main {
+    flex: 1 0 auto;
+  }
 h1,h2,h3,h4,h5,h6,th{
     color: white;
     font-family: 'Julius Sans One';
