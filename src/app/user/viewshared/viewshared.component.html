@@ -16,7 +16,11 @@
                             <div *ngIf="data['filetype']=='image/jpeg' || data['filetype']=='image/jpg' || data['filetype']=='image/png' ">
                                 <img [src]="data['fileurl']" width="60%" >
                             </div>
-                            <div *ngIf="data['filetype']!='image/jpeg' && data['filetype']!='image/jpg' && data['filetype']!='image/png' ">
+                            <div *ngIf="data['filetype']=='video/mp4' || data['filetype']=='video/3gp' || data['filetype']=='video/m4a' ">
+                                        
+                                <video width="100%" controls [src]="data['fileurl']"></video>
+                            </div>
+                            <div *ngIf="data['filetype']!='image/jpeg' && data['filetype']!='image/jpg' && data['filetype']!='image/png' && data['filetype']!='video/mp4' && data['filetype']!='video/3gp' && data['filetype']!='video/m4a'  ">
                                 <button type="button" class="btn-flat blue">Click here to View this Document</button>
                             </div>
                         </a>
@@ -28,8 +32,12 @@
                             <div *ngIf="data['filetype']=='image/jpeg' || data['filetype']=='image/jpg' || data['filetype']=='image/png' ">
                                 <img [src]="data['fileurl']" width="80%" >
                             </div>
-                            <div *ngIf="data['filetype']!='image/jpeg' && data['filetype']!='image/jpg' && data['filetype']!='image/png' ">
-                                <button type="button" class="btn-flat blue">Click here to View this data</button>
+                            <div *ngIf="data['filetype']=='video/mp4' || data['filetype']=='video/3gp' || data['filetype']=='video/m4a' ">
+                                        
+                                <video width="100%" controls [src]="data['fileurl']"></video>
+                            </div>
+                            <div *ngIf="data['filetype']!='image/jpeg' && data['filetype']!='image/jpg' && data['filetype']!='image/png' && data['filetype']!='video/mp4' && data['filetype']!='video/3gp' && data['filetype']!='video/m4a'  ">
+                                <button type="button" class="btn-flat blue">Click here to View this Document</button>
                             </div>
                         </a>
                     </div>
@@ -82,7 +90,11 @@
                                 <div *ngIf="data['filetype']=='image/jpeg' || data['filetype']=='image/jpg' || data['filetype']=='image/png' ">
                                     <img [src]="data['fileurl']" width="60%" >
                                 </div>
-                                <div *ngIf="data['filetype']!='image/jpeg' && data['filetype']!='image/jpg' && data['filetype']!='image/png' ">
+                                <div *ngIf="data['filetype']=='video/mp4' || data['filetype']=='video/3gp' || data['filetype']=='video/m4a' ">
+                                        
+                                    <video width="100%" controls [src]="data['fileurl']"></video>
+                                </div>
+                                <div *ngIf="data['filetype']!='image/jpeg' && data['filetype']!='image/jpg' && data['filetype']!='image/png' && data['filetype']!='video/mp4' && data['filetype']!='video/3gp' && data['filetype']!='video/m4a'  ">
                                     <button type="button" class="btn-flat blue">Click here to View this Document</button>
                                 </div>
                             </a>
@@ -94,8 +106,12 @@
                                 <div *ngIf="data['filetype']=='image/jpeg' || data['filetype']=='image/jpg' || data['filetype']=='image/png' ">
                                     <img [src]="data['fileurl']" width="80%" >
                                 </div>
-                                <div *ngIf="data['filetype']!='image/jpeg' && data['filetype']!='image/jpg' && data['filetype']!='image/png' ">
-                                    <button type="button" class="btn-flat blue">Click here to View this data</button>
+                                <div *ngIf="data['filetype']=='video/mp4' || data['filetype']=='video/3gp' || data['filetype']=='video/m4a' ">
+                                        
+                                    <video width="100%" controls [src]="data['fileurl']"></video>
+                                </div>
+                                <div *ngIf="data['filetype']!='image/jpeg' && data['filetype']!='image/jpg' && data['filetype']!='image/png' && data['filetype']!='video/mp4' && data['filetype']!='video/3gp' && data['filetype']!='video/m4a'  ">
+                                    <button type="button" class="btn-flat blue">Click here to View this Document</button>
                                 </div>
                             </a>
                         </div>
